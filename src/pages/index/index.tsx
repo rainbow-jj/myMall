@@ -1,40 +1,23 @@
 import React, { Component } from 'react'
-import { View, Text, Image, Button } from '@tarojs/components'
+import { View, Text, Image } from '@tarojs/components'
 import { connect } from 'react-redux'
 import { actionCreators } from './store'
-import { skus,c,k,s } from '../../api/detailData'
-
-import "taro-ui/dist/style/components/button.scss" // 按需引入
+import { labelGroups, skus} from '../../api/itemSkus'
+import  Skus from './component/skus'
 import './index.less'
 import DecideBtn from '../component/decidebtn'
-// import ChoseItem from './component/choseItem'
-import Skus from './component/skus'
-
-// @connect(({ choseItem }) => ({
-//   choseItem
-// }), (dispatch)=> ({
-//   getCategoryItem() {
-//     dispatch(actionCreators.getList())
-//   }
-// }))
 
 class Index extends Component {
-  // componentDidMount() {
-  //   this.props.getCategoryItem(),
-  //   this.props.getSubjectItem()
-  // }
-
   constructor(props) {
     super(props);
     this.state = {
-      selectSku:['','',''],
-      show: false
+      selectSku:["","",""],
     };
   }
-  handleSelect = (sku,show) => {
+
+  handleSelect = (sku) => {
     this.setState({
       selectSku: sku,
-      show: !show
     })
   }
 
@@ -50,31 +33,13 @@ class Index extends Component {
               <p className="headerContent">升小二，数学+语文，曾平标题表示</p>
             </View>
           </View>
-          {/* <View className="gradeWrapper">
-            <View className="grade">
-              <Text className="gradeTitle">年级</Text> */}
-                <Skus
-                  skus={ skus }
-                  labelGroups={[c,k,s]}
-                  value={this.state.selectSku}
-                  show={this.state.show}
-                  onClick={this.handleSelect}
-                  groupTitile={['年级','科目','赠送']}/>
-            {/* </View> */}
-
-            {/* <View className="subject">
-              <Text className="subjectTitle">科目</Text>
-              <View>
-              <ChoseItem list={ subject } />
-              </View>
-            </View>
-            <View className="giving">
-              <Text className="givingTitle">赠送</Text>
-              <View>
-                <Skus />
-              </View>
-             </View> */}
-          {/* </View> */}
+          <View>
+            <Skus
+              skus={skus}
+              labelGroups={labelGroups}
+              value={this.state.selectSku}
+              onClick={this.handleSelect}/>
+          </View>
           <View className="payWay">
             <View className='at-row'>
               <View className='at-col'>

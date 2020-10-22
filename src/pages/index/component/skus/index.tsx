@@ -1,16 +1,17 @@
-import React  from 'react';
-import SkusItem from './item';
-import {View} from '@tarojs/components';
+import React,{useState}  from 'react';
+import { View } from '@tarojs/components';
 import './skus.less'
 import produce from 'immer'
+import SingleSku from './singlesku';
 
 
-const Skus = ({ labelGroups = [], value, onClick, skus, show, groupTitile}) => {
-  const handleSkusItem = (show, label:any, index: any) => {
+const Skus = ({ labelGroups = [], value, onClick, skus}) => {
+
+  const handleSkusItem = (checked, label, index) => {
     onClick(
       produce(value, draft => {
         // value: ["", "", ""]
-      draft[index] = show ? label : '';
+      draft[index] = checked ? label : '';
     })
     );
   }
@@ -18,14 +19,13 @@ const Skus = ({ labelGroups = [], value, onClick, skus, show, groupTitile}) => {
     <View className="gradeWrapper">
       {
         labelGroups.map((item, index) => (
-          <SkusItem  //SingeSpec
+          <SingleSku
           key={index}
-          // skus={skus}
+          skus={skus}
           labels={item}
           value={value}
           index={index}
-          groupTitile={groupTitile}
-          onClick={(show, label) => handleSkusItem(show, label, index)}
+          onClick={(checked, label) => handleSkusItem(checked, label, index)}
           />
         ))}
     </View>

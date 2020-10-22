@@ -13,12 +13,12 @@ function includes(arr1, arr2) {
 const SkusItem = ({ labels = [], onClick, value, index, skus, groupTitile}) => {
   // labels : ['升小二','升小三','升小四','升小五','升小六','升初一','升初二','升初三','升高一','升高二','升高三']
   // onClick : onClick(checked, label)
-  // value: ["", "", ""]
+  value: ["", "", ""]
   // skus:
 
-  const handleSelect = (label) => {
+  const handleSelect = (e,label) => {
     // console.log('handleSelect, ', show)
-    // onClick(show, label)
+    onClick(e.target.checked, label)
     // label 点击的名字
     // e.target.checked ：
     // console.log('res',show,label)
@@ -45,14 +45,14 @@ const SkusItem = ({ labels = [], onClick, value, index, skus, groupTitile}) => {
       </View>
       <View className="btnBlock" >
         {labels.map((item, labelIndex) => (
+          //  <Text className="gradeTitle">{groupTitile}</Text>
           <View className="btnBox" key={item} >
-            <Button
-              className="sitem"
-              onClick={e => handleSelect(item)}
+            <Tag
+              onClick={e => handleSelect(e,item)}
               disabled={!labelsDisabled[labelIndex]}
             >
               {item}
-            </Button>
+            </Tag>
           </View>
         ))}
       </View>
