@@ -1,0 +1,2 @@
+export const GET_CHOSELIST = 'GET_CHOSELIST'
+export const GET_SUBJECT = 'GET_SUBJECT'
