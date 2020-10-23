@@ -1,7 +1,8 @@
 import React, { useMemo, useState } from 'react';
-import './skus.less'
-import Tag from './tag';
+import '../skus.less'
+import Tag from '../tag';
 import {View, Text} from '@tarojs/components';
+import styles from './singlespec.module.less';
 
 // 封装一个判断一个数组是否在另外一个数组里includes函数
 function includes(arr1, arr2) {
@@ -9,15 +10,18 @@ function includes(arr1, arr2) {
   // return 结果为 布尔值（true or false）
 }
 
-const SingleSku = ({value, labels = [],onClick, index,skus}) => {
+// 单个规格选择
+const SingleSpec = ({value, labels = [],onClick, index,skus}) => {
   // 设置 checked 初始值
   const [ checked, setChecked] = useState(false);
   // 变化：拿到点击的值
-
   const handleChange = (e, label) => {
-    // 变化时候设置 checked 的值为 e.target.checked
-    setChecked(prechecked => e.target.checked)
-    onClick(e.target.checked,label)
+    // 改变state 中的checked值
+    const nextChecked = e === checked ? !e : e
+    setChecked(nextChecked)
+    // console.log(nextChecked)
+    onClick(nextChecked,label)
+
   }
 
   // 定义一个最后点击的值,是一个数组，如 点击的是['升小二', '语文', '赠送标题'],其中哪个没点，就是空''
@@ -33,21 +37,23 @@ const SingleSku = ({value, labels = [],onClick, index,skus}) => {
     })
   },[value,skus,labels, index])
 
+
   return (
-    <View  className="grade">
+    <View  className={styles.grade}>
+      {/* <Text className="gradeTitle">{}</Text> */}
       { labels.map((item, labelIndex) => (
-        // <Text className="gradeTitle">{item[0]}</Text>
-        <Tag
-          className="tag-item"
-          tItem={item}
-          checked
-          onClick= {e=> handleChange(e,item)}
-          disabled={!labelsDisabled[labelIndex]}
-        />
+          <Tag
+            className={styles.tag}
+            key={labelIndex}
+            title={item}
+            checked={checked}
+            onClick= {e => handleChange(e,item)}
+            disabled={!labelsDisabled[labelIndex]}
+          />
       ))}
     </View>
   );
 };
 
-export default SingleSku;
+export default SingleSpec;
 

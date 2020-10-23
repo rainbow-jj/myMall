@@ -17,11 +17,7 @@ const SkusItem = ({ labels = [], onClick, value, index, skus, groupTitile}) => {
   // skus:
 
   const handleSelect = (e,label) => {
-    // console.log('handleSelect, ', show)
-    onClick(e.target.checked, label)
-    // label 点击的名字
-    // e.target.checked ：
-    // console.log('res',show,label)
+    console.log(label)
 
   }
   const finalValue = useMemo(() => value.filter(item => item), [value]);

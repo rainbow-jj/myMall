@@ -2,24 +2,27 @@ import React,{useState}  from 'react';
 import { View } from '@tarojs/components';
 import './skus.less'
 import produce from 'immer'
-import SingleSku from './singlesku';
+import SingleSpec from './singlespec/singlespec';
 
 
 const Skus = ({ labelGroups = [], value, onClick, skus}) => {
 
   const handleSkusItem = (checked, label, index) => {
+    // console.log(checked,label, index)
     onClick(
       produce(value, draft => {
         // value: ["", "", ""]
       draft[index] = checked ? label : '';
-    })
+      // console.log(draft[index])
+    }),
+    // console.log(label)
     );
   }
   return (
     <View className="gradeWrapper">
       {
         labelGroups.map((item, index) => (
-          <SingleSku
+          <SingleSpec
           key={index}
           skus={skus}
           labels={item}
