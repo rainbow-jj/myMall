@@ -2,8 +2,9 @@ import React, { Component } from 'react'
 import { View, Text, Image } from '@tarojs/components'
 import { connect } from 'react-redux'
 import { actionCreators } from './store'
-import { labelGroups, skus} from '../../api/itemSkus'
+import { labelGroups, skus } from '../../api/itemSkus'
 import  Skus from './component/skus'
+import Consignee from './component/consignee'
 import './index.less'
 import DecideBtn from '../component/decidebtn'
 
@@ -12,6 +13,8 @@ class Index extends Component {
     super(props);
     this.state = {
       selectSku:["","",""],
+      btntitle:'提交订单',
+      money: '￥9.00'
     };
   }
 
@@ -40,6 +43,9 @@ class Index extends Component {
               value={this.state.selectSku}
               onClick={this.handleSelect}/>
           </View>
+          <View>
+            <Consignee />
+          </View>
           <View className="payWay">
             <View className='at-row'>
               <View className='at-col'>
@@ -64,13 +70,14 @@ class Index extends Component {
               </View>
             </View>
           </View>
-
           <View className="footerWrapper">
             <View className="payCount">
               <Text className="payAct">实付款</Text>
-              <Text className="money">￥9.00</Text>
+              <Text className="money">{this.state.money}</Text>
             </View>
-            <DecideBtn />
+            <View className="submitbtn">
+              <DecideBtn btntitle={this.state.btntitle}/>
+            </View>
           </View>
         </View>
       </View>
@@ -78,13 +85,13 @@ class Index extends Component {
   }
 }
 
-const mapDispatch = (dispatch) => ({
-  getCategoryItem() {
-    dispatch(actionCreators.getList())
-  },
-  getSubjectItem() {
-    dispatch(actionCreators.getSubject())
-  }
-})
+// const mapDispatch = (dispatch) => ({
+//   getCategoryItem() {
+//     dispatch(actionCreators.getList())
+//   },
+//   getSubjectItem() {
+//     dispatch(actionCreators.getSubject())
+//   }
+// })
 
-export default connect(null, mapDispatch)(Index)
+export default Index

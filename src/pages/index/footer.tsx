@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import './footer.less'
 import '../../common/base.less'
-import { View,Text,Button } from "@tarojs/components";
+import { View,Text } from "@tarojs/components";
+import DecideBtn from '../component/decidebtn'
 
 class PayFooter extends Component {
 
@@ -13,9 +14,9 @@ class PayFooter extends Component {
           <Text className="payAct">实付款</Text>
           <Text className="money">￥9.00</Text>
         </View>
-        <Button  className="submitbtn">
-          <Text className="btnText">提交订单</Text>
-        </Button>
+        <View className="submitbtn">
+          <DecideBtn />
+        </View>
       </View>
     )
   }

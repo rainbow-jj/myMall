@@ -1,19 +1,20 @@
 import React, { Component } from "react";
 import '../../common/base.less'
 import { View,Text,Button } from "@tarojs/components";
+import { AtButton } from 'taro-ui'
+import styles from './decidebtn.module.less'
 
-class DecideBtn extends Component {
+const  DecideBtn = ({btntitle}) => {
+  console.log('btn',btntitle)
 
-
-  render() {
-    return (
-      <View className="decideBtn">
-        <Button  className="subbtn">
-          <Text className="btnText">提交订单</Text>
-        </Button>
-      </View>
-    )
-  }
+  return (
+    <View className={styles.decideBtn}>
+      <AtButton  className={styles.subbtn}>
+        { btntitle }
+      </AtButton>
+    </View>
+  )
 }
+
 
 export default DecideBtn
