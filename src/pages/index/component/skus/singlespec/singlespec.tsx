@@ -16,12 +16,15 @@ const SingleSpec = ({value, title, labels = [],onClick,index,skus}) => {
     onClick(nextChecked,label)
 
   }
+
+  // 判断选中的值是不是等于子组件的 title
   const  handleChecked = (item) => {
-    if (item ===value[index] ) return true
+    if (item === value[index] ) return true
   }
 
   const finalValue = useMemo(() => value.filter(item => item),[value])
 
+  // 不展示标签（没有的库存）
   const labelsDisabled = useMemo(() => {
     return labels.map(label => {
       // 进行数组循环返回一个新数组，在里面的labels 里面的 到list 中

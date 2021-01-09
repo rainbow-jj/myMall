@@ -6,6 +6,7 @@ import classnames from 'classnames';
 const Tag = ({ className, checked, title, disabled, onClick }) => {
 
   const handleClick = () => {
+    // 点击了设置为true
     if (disabled) return;
     onClick(!checked);
 
